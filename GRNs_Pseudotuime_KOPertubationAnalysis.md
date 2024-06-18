@@ -349,7 +349,9 @@ dev.visualize_development_module_layout_0(s=5,
                                           scale_for_pseudotime=scale_dev,
                                           vm=vm)
 
+```
 
+Hopefully you might have enjoyed using this script to analyse your scRNA data :)
 
 
 
