@@ -159,7 +159,9 @@ pt.plot_pseudotime(cmap="rainbow")
 plt.savefig('pt.png', dpi = 300)
 
 pt.adata.obs
-
+```
+# Let's do GRN calculations
+```
 base_GRN = co.data.load_mouse_scATAC_atlas_base_GRN()
 
 oracle = co.Oracle()
@@ -202,12 +204,18 @@ links.merged_score
 ## OR can do links for condition (optional)
 %%time
 link=oracle.get_links(cluster_name_for_GRN_unit="Condition")
+```
+# Save results as csv
 
-#save results as csv
+```
+
 link.links_dict['Adult'].to_csv(f"raw_GRN_for_Adult.csv")
 #or
 links.links_dict["Nr4a1+ Old"].to_csv(f"raw_GRN_for_Nr4a1+Old.csv")
+```
+# Find Genes of Interest for Knock Out Pertubations
 
+```
 plt.rcParams["figure.figsize"] = [9, 7.5]
 links.plot_scores_as_rank(cluster="Nr4a1+ Adult", n_gene=30)
 
@@ -239,16 +247,21 @@ sc.pl.umap(oracle.adata, color = ['Klf6'], layer="imputed_count", size=38)
 sc.get.obs_df(oracle.adata, keys=["Osr2"],layer="imputed_count").max()
     #O/P:Osr2    0.071794
          dtype: float64
-
+```
 #### Double the expression of genes of Interest
-oracle.simulate_shift(perturb_condition={'Osr2': 0.14}, n_propagation=3)
+
+```oracle.simulate_shift(perturb_condition={'Osr2': 0.14}, n_propagation=3)```
 
 ### Double KOs of Bhlhe40 and Nfkb1
-oracle.simulate_shift(perturb_condition={'Bhlhe40': 0.0,'Nfkb1': 0.0}, n_propagation=3)
+
+```oracle.simulate_shift(perturb_condition={'Bhlhe40': 0.0,'Nfkb1': 0.0}, n_propagation=3)```
 
 ### Single KO of goi
-oracle.simulate_shift(perturb_condition={'Osr2': 0.0}, n_propagation=3)
 
+```oracle.simulate_shift(perturb_condition={'Osr2': 0.0}, n_propagation=3)```
+
+# Analysis on the pseudotime trajectory
+```
 oracle.estimate_transition_prob(n_neighbors=200,
                                 knn_random=True,
                                 sampled_fraction=1)
