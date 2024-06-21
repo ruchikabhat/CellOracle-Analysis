@@ -209,9 +209,12 @@ link=oracle.get_links(cluster_name_for_GRN_unit="Condition")
 
 ```
 
+# to save the full Base GRN dictionary
 link.links_dict['Adult'].to_csv(f"raw_GRN_for_Adult.csv")
 #or
 links.links_dict["Nr4a1+ Old"].to_csv(f"raw_GRN_for_Nr4a1+Old.csv")
+# to save only the filtered GRNS
+links.filtered_links["Inmt+ Adult"].to_csv(f"Inmt+AdultFiltered.csv")
 ```
 # Find Genes of Interest for Knock Out Pertubations
 
