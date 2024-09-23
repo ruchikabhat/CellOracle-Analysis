@@ -14,6 +14,8 @@
 
 #Generate these files
 
+```mouse<-readRDS("yourcomplete.rdsfile")
+
 ```counts_matrix <-GetAssayData(mouse, assay='RNA',slot='counts')```
 
 #save matrix file
